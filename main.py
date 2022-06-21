@@ -1,16 +1,12 @@
-from source import *
 from flask import *
 import enum
 import os
-import time
+from waitress import serve
 
 from logger import logging
 from bs4 import BeautifulSoup
 import requests
 import re
-import webbrowser
-import argparse
-
 port = "2096"
 cimaclub = f"https://www.cima-club.io/"
 
@@ -246,5 +242,4 @@ def givethatshow():
 
 
 if __name__ == "__main__":
-    app.debug=True
-    app.run()
+    serve(app, host="0.0.0.0", port=int(os.environ.get("PORT", 5000)))
